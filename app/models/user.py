@@ -18,26 +18,26 @@ webs = db.relationship("Web", back_populates="users")
 playlists = db.relationship("Playlist", back_populates="users")
 
 
-  @property
-  def password(self):
-    return self.hashed_password
+    @property
+    def password(self):
+      return self.hashed_password
 
 
-  @password.setter
-  def password(self, password):
-    self.hashed_password = generate_password_hash(password)
+    @password.setter
+    def password(self, password):
+      self.hashed_password = generate_password_hash(password)
 
 
-  def check_password(self, password):
-    return check_password_hash(self.password, password)
+    def check_password(self, password):
+      return check_password_hash(self.password, password)
 
 
-  def to_dict(self):
-    return {
-      "id": self.id,
-      "full_name": self.full_name,
-      "username": self.username,
-      "email": self.email,
-      "avatar": self.avatar,
-      "created_at": self.created_at
+    def to_dict(self):
+      return {
+        "id": self.id,
+        "full_name": self.full_name,
+        "username": self.username,
+        "email": self.email,
+        "avatar": self.avatar,
+        "created_at": self.created_at
     }

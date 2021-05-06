@@ -1,6 +1,7 @@
 from .db import db
 from sqlalchemy.sql import func
 
+
 class Web(db.Model):
   __tablename__ = "webs"
 
