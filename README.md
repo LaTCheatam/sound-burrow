@@ -89,7 +89,7 @@ This is the backend for the Flask React project.
 9. set up your database:
 
    ```bash
-   heroku run -a {NAME_OF_HEROKU_APP} flask db upgrade
+   heroku run -a soundburrows flask db upgrade
    heroku run -a {NAME_OF_HEROKU_APP} flask seed all
    ```
 

@@ -1,15 +1,19 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, redirect
 from flask_login import login_required
-from app.models import User
+from ..models.user import User
+from ..models.db import db
+from ..models.web import Web
+from ..models.playlist import Playlist
+from ..forms.update_form import UpdateForm
 
 user_routes = Blueprint('users', __name__)
 
 
-@user_routes.route('/')
-@login_required
-def users():
-    users = User.query.all()
-    return {"users": [user.to_dict() for user in users]}
+# @user_routes.route('/')
+# @login_required
+# def users():
+#     users = User.query.all()
+#     return {"users": [user.to_dict() for user in users]}
 
 
 @user_routes.route('/<int:id>')
@@ -20,10 +24,30 @@ def user(id):
 
 
 # user webs - user's webs view
-# @user_routes.route('/int:id/webs', methods['GET']) 
+@user_routes.route('/int:id/webs', methods=['GET']) 
+@login_required
+def get_webs(id):
+    webs = Web.query.all(id).order_by(Web.web_name.desc())
+
+# user webs - user's webs view
+@user_routes.route('/int:id/playlists', methods=['GET']) 
+@login_required
+def get_playlists(id):
+    webs = Playlist.query.all(id).order_by(Playlist.pl_title.desc())
 
 # delete a user -- successful deletion redirect to auth_routes.route('/') -- splash page
-# @user_routes.route('/int:id/delete', methods=['DELETE']) 
+@user_routes.route('/int:id/delete', methods=['DELETE'])
+@login_required
+def delete_user(id):
+    user = User.query.get(id)
+    db.session.delete(user)
+    db.session.commit() 
+    return redirect('/') 
 
 # update update if successful redirect to user_routes.route('/int:id/dashboard', methods=['GET'])
-# @user_routes.route('/int:id/update', methods=['PUT']) 
+@user_routes.route('/int:id/update', methods=['PATCH'])
+@login_required
+def update_user(id):
+    form = UpdateForm
+    if form.validate_on_submit():
+
