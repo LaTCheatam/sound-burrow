@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify, redirect
+from flask.globals import request
 from flask_login import login_required
 from ..models.user import User
 from ..models.db import db
@@ -47,7 +48,13 @@ def delete_user(id):
 # update update if successful redirect to user_routes.route('/int:id/dashboard', methods=['GET'])
 @user_routes.route('/int:id/update', methods=['PATCH'])
 @login_required
-def update_user(id):
+def edit_user(id):
     form = UpdateForm
-    if form.validate_on_submit():
+    user = User.query.get(id)
+    if user:
+        user.full_name = request.form['full_name']
+        user.username = request.form['username']
+        user.email = request.form['email']
+        user.avatar = request.form['avatar']
+       
 
