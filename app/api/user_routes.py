@@ -17,3 +17,13 @@ def users():
 def user(id):
     user = User.query.get(id)
     return user.to_dict()
+
+
+# user webs - user's webs view
+@user_routes.route('/int:id/webs', methods['GET']) 
+
+# delete a user -- successful deletion redirect to auth_routes.route('/') -- splash page
+@user_routes.route('/int:id/delete', methods=['DELETE']) 
+
+# update update if successful redirect to user_routes.route('/int:id/dashboard', methods=['GET'])
+@user_routes.route('/int:id/update', methods=['PUT']) 

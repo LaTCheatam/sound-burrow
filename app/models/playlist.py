@@ -1,5 +1,6 @@
 from .db import db
 from sqlalchemy.sql import func
+from .music_playlist import Music_Playlist
 
 class Playlist(db.Model):
   __tablename__ = "playlists"
@@ -14,6 +15,9 @@ class Playlist(db.Model):
   pl_era = db.Column(db.String(40), nullable=True)
   created_at = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now())
   updated_at = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now())
+
+  user = db.relationship("User", back_populates="playlists")
+  musics = db.relationship("Music", secondary=Music_Playlist, back_populates="playlists")
 
   def to_dict(self):
         return {
