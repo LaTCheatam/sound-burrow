@@ -14,7 +14,6 @@ def seed_webs():
           Web(users_id='5', web_title='life soundtrack', web_desc='soundtrack of my life', web_mood='', web_similarity='', web_genre='', web_era='')
   ]
   for web in data:
-        user.webs.append(web)
         db.session.add(web)
     db.session.commit()
 

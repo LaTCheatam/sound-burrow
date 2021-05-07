@@ -1,23 +1,23 @@
 from .db import db
 from sqlalchemy.sql import func
-from .music_playlist import Music_Playlist
+from app.models import music_playlist
 
 class Playlist(db.Model):
   __tablename__ = "playlists"
 
   id = db.Column(db.Integer, nullable=False, primary_key=True)
   users_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-  pl_title = db.Column(db.String(40), nullable=False)
-  pl_desc = db.Column(db.String(40), nullable=True)
-  pl_mood = db.Column(db.String(40), nullable=True)
-  pl_similarity = db.Column(db.String(40), nullable=True)
-  pl_genre = db.Column(db.String(40), nullable=True)
-  pl_era = db.Column(db.String(40), nullable=True)
+  pl_title = db.Column(db.String(100), nullable=False)
+  pl_desc = db.Column(db.String(), nullable=True)
+  pl_mood = db.Column(db.String(100), nullable=True)
+  pl_similarity = db.Column(db.String(100), nullable=True)
+  pl_genre = db.Column(db.String(100), nullable=True)
+  pl_era = db.Column(db.String(100), nullable=True)
   created_at = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now())
   updated_at = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now())
 
-  user = db.relationship("User", back_populates="playlists")
-  musics = db.relationship("Music", secondary=Music_Playlist, back_populates="playlists")
+  author = db.relationship("User", back_populates="playlists")
+  musics = db.relationship("Music", secondary='music_playlists', back_populates="playlists")
 
   def to_dict(self):
         return {

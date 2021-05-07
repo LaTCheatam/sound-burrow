@@ -14,8 +14,8 @@ class User(db.Model, UserMixin):
   avatar = db.Column(db.String(2000), nullable = True)
   created_at = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now())
 
-  webs = db.relationship("Web", back_populates="users")
-  playlists = db.relationship("Playlist", back_populates="users")
+  webs = db.relationship("Web", back_populates="creator")
+  playlists = db.relationship("Playlist", back_populates="author")
 
   @property
   def password(self):
