@@ -21,11 +21,8 @@ export const authenticate = () => async (dispatch) => {
         }
     });
 
-    const data = await response.json();
-    if (data.errors) {
-        return;
-    }
-    dispatch(setUser(data))
+    const user = await response.json();
+    if (!user.errors) dispatch(setUser(user))
     
 }
 
@@ -40,23 +37,14 @@ export const login = (email, password) => async (dispatch) => {
             password
         })
     });
-    const data = await response.json();
-    if (data.errors) {
-        return data;
-    }
-    dispatch(setUser(data));
-    return {};
+    const user = await response.json();
+    if (user.errors) {
+        const err = new Error('Unauthorized');
+        err.errors = user.errors;
+        throw err;
+    } else dispatch(setUser(user))
 }
 
-export const logout = () => async (dispatch) => {
-    const response = await fetch("/api/auth/logout", {
-        headers: {
-            "Content-Type": "application/json",
-        }
-    });
-    const data = await response.json();
-    dispatch(removeUser());
-};
 
 
 export const signUp = (username, email, password) => async (dispatch)=> {
@@ -71,22 +59,34 @@ export const signUp = (username, email, password) => async (dispatch)=> {
             password,
         }),
     });
-    const data = await response.json();
-    dispatch(setUser(data));
-}
+    const user = await response.json();
+    if (user.errors) {
+        const err = new Error('Unauthorized');
+        err.errors = user.errors;
+        throw err;
+    } else dispatch(setUser(user))
+
+export const logout = () => async (dispatch) => {
+    const response = await fetch("/api/auth/logout", {
+        headers: {
+            "Content-Type": "application/json",
+        }
+    });
+    const user = await response.json();
+    dispatch(removeUser());
+};
 
 // reducer
 
-const initialState = { user: null };
 
 // useSelector(state => state.session.user)
 
-export default function reducer(state = initialState, action) {
+export default function reducer(state = { user: null, loaded: false }, action) {
     switch (action.type) {
         case SET_USER:
-            return { user: action.payload };
+            return {...state, user: action.user, loaded: true };
         case REMOVE_USER:
-            return { user: null };
+            return {...state, user: null, loaded: true };
         default:
             return state;
     }

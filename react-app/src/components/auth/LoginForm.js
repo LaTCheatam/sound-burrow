@@ -6,16 +6,16 @@ import { login } from "../../store/session";
 const LoginForm = () => {
   const dispatch = useDispatch();
   const user = useSelector(state => state.session.user);
+  const sessionLoaded = useSelector(state => state,session.loaded)
+
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const onLogin = async (e) => {
+  const onLogin = (e) => {
     e.preventDefault();
-    const data = await dispatch(login(email, password));
-    if (data.errors) {
-      setErrors(data.errors);
-    }
+    dispatch(login(email, password));
+      .catch(err => setErrors(err.errors));
   };
 
   const updateEmail = (e) => {
@@ -26,8 +26,8 @@ const LoginForm = () => {
     setPassword(e.target.value);
   };
 
-  if (user) {
-    return <Redirect to="/" />;
+  if (sessionLoaded && user) {
+    return <Redirect to="/api/user/${user.id}/dashboard" />;
   }
 
   return (

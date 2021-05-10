@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import { useDispatch, useSelector } from "react-redux";
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
+
   const user = useSelector(state => state.session.user);
+  const sessionLoaded = useSelector(state => state,session.loaded)
+
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -35,7 +38,7 @@ const SignUpForm = () => {
   };
 
   if (user) {
-    return <Redirect to="/" />;
+    return <Redirect to="/api/user/${user.id}/dashboard" />;
   }
 
   return (

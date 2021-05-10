@@ -1,8 +1,24 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
+import { useDispatch } from 'react-redux';
+
+import { showModal, setCurrentModal } from '../store/modal';
+import LoginForm from '../components/auth/LoginForm';
+import SignupForm from '../components/auth/SignUpForm';
 
 const NavBar = () => {
+  const dispatch = useDispatch();
+  const showLogin = () => { 
+    dispatch(setCurrentModal(LoginForm))
+    dispatch(showModal())
+  };
+
+  const showLogin = () => { 
+    dispatch(setCurrentModal(SignupForm))
+    dispatch(showModal())
+  };
+
   return (
     <nav>
       <ul>
@@ -12,14 +28,14 @@ const NavBar = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/login" exact={true} activeClassName="active">
-            Login
-          </NavLink>
+          <button onClick={showLogin}>
+            Log In
+          </button>
         </li>
         <li>
-          <NavLink to="/sign-up" exact={true} activeClassName="active">
+          <button onClick={showSignup}>
             Sign Up
-          </NavLink>
+          </button>
         </li>
         <li>
           <NavLink to="/users" exact={true} activeClassName="active">

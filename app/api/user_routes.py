@@ -24,7 +24,7 @@ def user(id):
     user = User.query.get(id)
     return user.to_dict()
 
-@user_routes.route('/<int:id/dashboard>', methods=['GET'])
+@user_routes.route('/<int:id>', methods=['GET'])
 @login_required
 def get_dash(id):
     web = Web.query.get(id)
