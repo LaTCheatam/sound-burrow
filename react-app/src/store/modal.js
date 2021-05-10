@@ -20,7 +20,7 @@ export const setCurrentModal = current => ({
 });
 
 export const setModalMount = mount => ({
-  type: CURRENT,  
+  type: MOUNT,  
   mount
 });
 

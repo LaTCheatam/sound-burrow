@@ -6,7 +6,7 @@ import { login } from "../../store/session";
 const LoginForm = () => {
   const dispatch = useDispatch();
   const user = useSelector(state => state.session.user);
-  const sessionLoaded = useSelector(state => state,session.loaded)
+  const sessionLoaded = useSelector(state => state.session.loaded)
 
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
@@ -14,7 +14,7 @@ const LoginForm = () => {
 
   const onLogin = (e) => {
     e.preventDefault();
-    dispatch(login(email, password));
+    dispatch(login(email, password))
       .catch(err => setErrors(err.errors));
   };
 
@@ -27,7 +27,7 @@ const LoginForm = () => {
   };
 
   if (sessionLoaded && user) {
-    return <Redirect to="/api/user/${user.id}/dashboard" />;
+    return <Redirect to='/api/user/${user.id}/dashboard' />
   }
 
   return (

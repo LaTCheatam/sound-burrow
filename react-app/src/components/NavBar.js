@@ -14,7 +14,7 @@ const NavBar = () => {
     dispatch(showModal())
   };
 
-  const showLogin = () => { 
+  const showSignup = () => { 
     dispatch(setCurrentModal(SignupForm))
     dispatch(showModal())
   };

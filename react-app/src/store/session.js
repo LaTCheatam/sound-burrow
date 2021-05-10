@@ -43,9 +43,7 @@ export const login = (email, password) => async (dispatch) => {
         err.errors = user.errors;
         throw err;
     } else dispatch(setUser(user))
-}
-
-
+};
 
 export const signUp = (username, email, password) => async (dispatch)=> {
     const response = await fetch("/api/auth/signup", {
@@ -65,6 +63,7 @@ export const signUp = (username, email, password) => async (dispatch)=> {
         err.errors = user.errors;
         throw err;
     } else dispatch(setUser(user))
+};
 
 export const logout = () => async (dispatch) => {
     const response = await fetch("/api/auth/logout", {
@@ -89,5 +88,5 @@ export default function reducer(state = { user: null, loaded: false }, action) {
             return {...state, user: null, loaded: true };
         default:
             return state;
-    }
-}
+    };
+};

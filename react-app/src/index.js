@@ -1,16 +1,16 @@
 import React, { useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
+import { Provider, useDispatch } from 'react-redux';
 
-import { setModalMount } from './store/index'
+import { setModalMount } from './store/modal'
 import App from './App';
-import configureStore from './store'
+import configureStore from './store/index'
 
 import './index.css';
 
 const store = configureStore();
 
-function Root () {
+const Root = () => {
   const dispatch = useDispatch();
   const modalMooringRef = useRef(null)
 
@@ -29,7 +29,7 @@ function Root () {
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <Root />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

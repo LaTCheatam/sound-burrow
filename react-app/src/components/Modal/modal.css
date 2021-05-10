@@ -1,6 +1,6 @@
 .modal-background {
   position: absolute;
-  background-color: aquamarine;
+  background-color: rgb(45, 4, 45);
   top: 0;
   bottom: 0;
   left: 0;
@@ -11,7 +11,17 @@
 }
 
 .modal-content {
-  height: 40vh;
-  width: 40vw;
-  background-color: blueviolet;
+  height: 65vh;
+  width: 65vw;
+  background-color: rgb(150, 80, 215);
+  align-items: center;
+  justify-content: center;
+}
+
+label {
+  font-size: 30px;
+  display: block;
+  align-self: center;
+  justify-self: center;
+
 }

@@ -7,7 +7,7 @@ const SignUpForm = () => {
   const dispatch = useDispatch();
 
   const user = useSelector(state => state.session.user);
-  const sessionLoaded = useSelector(state => state,session.loaded)
+  const sessionLoaded = useSelector(state => state.session.loaded)
 
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");

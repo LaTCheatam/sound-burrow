@@ -7,6 +7,7 @@ from ..models.web import Web
 from ..models.playlist import Playlist
 from ..models.music import Music
 from ..forms.update_form import UpdateForm
+from app.models import web
 
 user_routes = Blueprint('users', __name__)
 
@@ -38,11 +39,6 @@ def get_dash(id):
         }
 
 
-# user webs - user's webs view
-@user_routes.route('/<int:id>/webs', methods=['GET']) 
-@login_required
-def get_webs(id):
-    webs = Web.query.all(id).order_by(Web.web_name.desc())
 
 # user webs - user's webs view
 @user_routes.route('/<int:id>/playlists', methods=['GET']) 

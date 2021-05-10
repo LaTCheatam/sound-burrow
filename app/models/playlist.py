@@ -8,7 +8,7 @@ class Playlist(db.Model):
   id = db.Column(db.Integer, nullable=False, primary_key=True)
   users_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
   pl_title = db.Column(db.String(100), nullable=False)
-  pl_desc = db.Column(db.String(), nullable=True)
+  pl_desc = db.Column(db.String(100), nullable=True)
   pl_mood = db.Column(db.String(100), nullable=True)
   pl_similarity = db.Column(db.String(100), nullable=True)
   pl_genre = db.Column(db.String(100), nullable=True)
