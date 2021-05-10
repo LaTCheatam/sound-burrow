@@ -44,13 +44,13 @@ def delete_web(id):
   return f'Web: "{web.web_name}" is no more.'
 
 # update a web
-@web_routes.route('/<int:id>/update', methods=['PUT']) 
-def update_web(id):
-  web = Web.query.get(id)
-  if web:
-    web.web_name = request.form['web_name']
-    web.web_mood = request.form['web_mood']
-    web.web_similarity = request.form['web_similarity']
-    web.web_genre = request.form['web_genre']
-    web.web_era = request.form['web_er']
-    return f'{Web} successfully updated'
+# @web_routes.route('/<int:id>/update', methods=['PUT']) 
+# def update_web(id):
+#   web = Web.query.get(id)
+#   if web:
+#     web.web_name = request.form['web_name']
+#     web.web_mood = request.form['web_mood']
+#     web.web_similarity = request.form['web_similarity']
+#     web.web_genre = request.form['web_genre']
+#     web.web_era = request.form['web_er']
+#     return f'{Web} successfully updated'

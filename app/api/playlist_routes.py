@@ -39,13 +39,14 @@ def delete_playlist(id):
   return f'Playlist: "{playlist.playlist_name}" is no more.' 
 
  # update a playlist if successful redirect to playlist_routes.route('/playlist/int:id', methods=['GET'])
-playlist_routes.route('/playlist/int:id/update', methods=['PATCH'])
-def update_playlist(id):
-  playlist = Playlist.query.get(id)
-  if playlist:
-    playlist.pl_title=request.['pl_title']
-    playlist.pl_mood=request.['pl_mood']
-    playlist.pl_similarity=request.['pl_similarity']
-    playlist.pl_genre=request.['pl_genre']
-    playlist.pl_era=request.['pl_era']
-    return f'{Playlist} successfully updated'
+# @playlist_routes.route('/playlist/int:id/update', methods=['PATCH'])
+# def update_playlist(id):
+#   playlist = Playlist.query.get(id)
+#   data = request.data
+#   if playlist:
+#     playlist.pl_title=request.data
+#     playlist.pl_mood=request.data
+#     playlist.pl_similarity=request.data
+#     playlist.pl_genre=request.data
+#     playlist.pl_era=request.data
+#     return f'{Playlist} successfully updated'
