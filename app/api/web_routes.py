@@ -4,20 +4,20 @@ from app.models import Playlist
 from app.models import Web
 from app.models import Music
 from app.models import User
-from app.models import Music_Web
+from app.models import music_web
 from app.models import db
 
 web_routes = Blueprint('webs', __name__)
 
 # create web - on successful save redirect to webs_routes.route('/webs/int:id', methods=['GET'])
-@web_routes.route('/create', methods=['POST'])
-def create_web(id):
+# @web_routes.route('/create', methods=['POST'])
+# def create_web(id):
   # form = CreateWebForm()
   # form['csrf_token'].data = request.cookies['csrf_token']
   # user = User.query.get(id)
 
 #add song or artist to 
-@web_routes.route('/<int:id>/add', methods=['PATCH'])
+# @web_routes.route('/<int:id>/add', methods=['PATCH'])
 
 # display single webs page
 @web_routes.route('/<int:id>', methods=['GET']) 
