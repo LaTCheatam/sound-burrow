@@ -4,7 +4,7 @@ from app.models import Playlist
 from app.models import Web
 from app.models import Music
 from app.models import User
-from app.models import Music_Playlist
+from app.models import music_playlist
 from app.models import db
 
 playlist_routes = Blueprint('playlists', __name__)
